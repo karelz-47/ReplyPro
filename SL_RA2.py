@@ -36,11 +36,17 @@ if st.button("Generate Draft"):
                 {
                 "role": "system", 
                 "content": (
-                        "You are a professional customer service assistant. "
-                        "Generate empathetic, professional, and well-rounded responses to customer reviews. "
-                        "Make sure the responses express understanding and appreciation while being concise but thoughtful. "
-                        "Ensure to use correct professional terminology, especially for industry-specific and legal terms. "
-                        "Avoid overly generic replies and tailor the response to the review."
+                        "You are an Expert CUSTOMER SERVICE PROFESSIONAL."
+                        "Your task is to FORMULATE empathetic, professional, and well-rounded responses to customer reviews."
+                        "Follow these steps to ensure success:"
+                        "1. READ each customer review CAREFULLY to fully understand the customer's experience and perspective."
+                        "2. EXPRESS UNDERSTANDING and APPRECIATION in your response by acknowledging the customer's feelings and thanking them for their feedback."
+                        "3. ENSURE that your replies are CONCISE yet THOUGHTFUL, providing a personalized touch that reflects the specific content of each review."
+                        "4. USE correct PROFESSIONAL TERMINOLOGY, particularly industry-specific and legal terms where appropriate, to maintain professionalism."
+                        "5. TAILOR each response directly to the review's details, avoiding generic language that could apply to any situation."
+                        "6. OFFER solutions or next steps when addressing any issues raised by the customer, demonstrating a proactive approach."
+                        "Remember that you MUST always maintain a tone of empathy and professionalism."
+                        "Take a Deep Breath."
                     )
                 },
                 {"role": "user", "content": f"Review: {client_review}\nLanguage: {draft_language}\nInsights: {insights}"}
@@ -50,7 +56,7 @@ if st.button("Generate Draft"):
             response = client.chat.completions.create(
                 model="ft:gpt-4o-2024-08-06:personal:replypro1:Aah8tN4s",
                 messages=messages,
-                max_tokens=2000
+                max_tokens=4000
             )
 
             # Save the draft response in session state
@@ -85,9 +91,19 @@ if st.button("Translate Final Version"):
                 {
                     "role": "system", 
                     "content": (
-                        f"You are a professional translator. When translating, ensure to use correct "
-                        f"localized and professional terminology, especially for industry-specific terms. "
-                        f"Translate the following text into {final_language}, preserving formal tone and precision."
+                    
+                    f"You are an Expert PROFESSIONAL TRANSLATOR. Your task is to CONVERT the following" 
+                    f"text into {final_language} with utmost ACCURACY and PRECISION.Proceed with these steps:"
+                    f"1. READ the source text thoroughly to UNDERSTAND the context and the INDUSTRY-SPECIFIC terms used."
+                    f"2. IDENTIFY any terms that require SPECIALIZED KNOWLEDGE and RESEARCH their equivalent in the {final_language},"
+                    f"ensuring they are LOCALLY APPROPRIATE and PROFESSIONALLY RECOGNIZED."
+                    f"3. PAY ATTENTION to grammatical structures and idiomatic expressions, ADAPTING them to fit the "
+                    f"linguistic norms of {final_language} while preserving their intended meaning."
+                    f"4. ENSURE that all terminology is used CONSISTENTLY throughout the translation and is in line with industry standards."
+                    f"5. REVIEW your translation for any possible AMBIGUITIES or inaccuracies, and make necessary adjustments "
+                    f"for CLARITY and FLOW."
+                    f"7. PROOFREAD your work to eliminate any spelling or typographical errors."
+                    f"Take a Deep Breath."
                     )
                 },
                 {"role": "user", "content": draft_response}
@@ -97,7 +113,7 @@ if st.button("Translate Final Version"):
             translation = client.chat.completions.create(
                 model="ft:gpt-4o-2024-08-06:personal:replypro1:Aah8tN4s",
                 messages=messages,
-                max_tokens=2000
+                max_tokens=4000
             )
 
             # Update the draft response with the translation
